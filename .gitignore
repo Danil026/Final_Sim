@@ -1,0 +1,5 @@
+env/
+ __pycache__/
+config.ini
+etl/py_log.log
+.env
