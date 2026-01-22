@@ -163,7 +163,7 @@ crontab -e
 0 7 * * * /path/to/venv/bin/python /path/to/API_extract.py 
 ```
 ## Визуализация в Metabase
-[Дашборд →](http://91.201.40.224:3000/dashboard/2-dashbord-prodazh-c-2023-g?%25D0%25B2%25D1%258B%25D0%25B1%25D0%25B5%25D1%2580%25D0%25B8%25D1%2582%25D0%25B5_%25D0%25B4%25D0%25B0%25D1%2582%25D1%2583=&%25D0%25B2%25D1%258B%25D0%25B1%25D0%25B5%25D1%2580%25D0%25B8%25D1%2582%25D0%25B5_id__%25D0%25BF%25D1%2580%25D0%25BE%25D0%25B4%25D1%2583%25D0%25BA%25D1%2582%25D0%25B0=&tab=4-общий)
+[Дашборд →](http://91.201.40.224:3000/public/dashboard/a37f1e00-8d53-4553-a5e7-c08f375530f4)
 
 ![Metabase Dashboard](Metabase/Dashboard.png)
 Расчеты всех метрик находятся в Metabase/SQL_Metabase.sql
