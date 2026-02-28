@@ -3,3 +3,5 @@ env/
 config.ini
 etl/py_log.log
 .env
+.vscode/
+.idea/
