@@ -1,0 +1,40 @@
+name: Auto-commit ETL Logs
+
+on:
+  workflow_dispatch:  # ручной запуск через GitHub UI
+  schedule:
+    - cron: '0 2 * * *'  # ежедневный запуск в 02:00 UTC
+
+jobs:
+  update-logs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install pandas psycopg2-binary requests
+
+      - name: Run ETL pipeline
+        run: python ETL/API_extract.py
+
+      - name: Check for log changes
+        id: check-changes
+        run: |
+          git status --porcelain | grep -q "py_log.log" && echo "changed=true" >> $GITHUB_OUTPUT || echo "changed=false" >> $GITHUB_OUTPUT
+
+      - name: Commit and push logs
+        if: steps.check-changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add py_log.log
+          git commit -m "Auto-update: ETL logs $(date +'%Y-%m-%d %H:%M')"
+          git push
